@@ -30,7 +30,7 @@ class SwappableThemesPlugin {
 
     apply(compiler) {
         const {themes, pluginThemes} = buildThemesData(this.options);
-        const defaultThemeName = this.options.defaultTheme;
+        const defaultThemeName = this.options.defaultTheme ?? Object.keys(themes)[0];
 
         const damn: Plugin = new WebpackCSSThemesPlugin({
             themes: pluginThemes,
@@ -47,9 +47,7 @@ class SwappableThemesPlugin {
         compiler.options.plugins.forEach(plugin => {
             if (plugin instanceof HtmlWebpackPlugin) {
                 const thePlugin = plugin as HtmlWebpackPluginWithCustomFields;
-                if (defaultThemeName !== null) {
-                    thePlugin.options.extraHeadTags = getNewLinkTag(defaultThemeName, themes[defaultThemeName], true);
-                }
+                thePlugin.options.extraHeadTags = getNewLinkTag(defaultThemeName, themes[defaultThemeName], true);
                 thePlugin.options.excludeAssets = [/\.css$/];
             }
         });
