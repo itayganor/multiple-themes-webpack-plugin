@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 
 import {Options, PluginThemes, RuntimeThemes, SourceThemes} from './types';
