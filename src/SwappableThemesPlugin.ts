@@ -5,6 +5,7 @@ import ExcludeAssetsPlugin from '@ianwalter/exclude-assets-plugin';
 
 import {getNewLinkTag} from './utils';
 import buildThemesData from './buildData';
+import {SourceThemes} from './types';
 
 
 type HtmlWebpackPluginWithCustomFields = HtmlWebpackPlugin & {
@@ -14,11 +15,16 @@ type HtmlWebpackPluginWithCustomFields = HtmlWebpackPlugin & {
     };
 };
 
+type SwappableThemesPluginOptions = {
+    themes: SourceThemes;
+    defaultTheme?: keyof SourceThemes | null;
+}
+
 
 class SwappableThemesPlugin extends Plugin {
-    options: object;
+    options: SwappableThemesPluginOptions;
 
-    constructor(options) {
+    constructor(options: SwappableThemesPluginOptions) {
         super();
         this.options = options;
     }
@@ -41,7 +47,9 @@ class SwappableThemesPlugin extends Plugin {
         compiler.options.plugins.forEach(plugin => {
             if (plugin instanceof HtmlWebpackPlugin) {
                 const thePlugin = plugin as HtmlWebpackPluginWithCustomFields;
-                thePlugin.options.extraHeadTags = getNewLinkTag(defaultThemeName, themes[defaultThemeName], true);
+                if (defaultThemeName !== null) {
+                    thePlugin.options.extraHeadTags = getNewLinkTag(defaultThemeName, themes[defaultThemeName], true);
+                }
                 thePlugin.options.excludeAssets = [/\.css$/];
             }
         });

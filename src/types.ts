@@ -1,8 +1,8 @@
 export interface Options {
-    themesDirectory: string;
+    themes: SourceThemes;
+    defaultTheme: keyof SourceThemes | null;
     cssPathInPublicPath: string;
     themePrefix: string;
-    palette: string;
 }
 
 export interface SourceThemes {

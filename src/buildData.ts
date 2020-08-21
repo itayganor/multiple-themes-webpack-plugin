@@ -6,10 +6,10 @@ import {Options, PluginThemes, RuntimeThemes, SourceThemes} from './types';
 
 
 const DEFAULT_OPTIONS: Options = {
-    themesDirectory: './src/theme/themes',
+    themes: {},
+    defaultTheme: null,
     cssPathInPublicPath: 'css',
     themePrefix: 'theme',
-    palette: './src/theme/palette.less',
 };
 
 function main(inputOptions: Partial<Options>) {
@@ -17,35 +17,19 @@ function main(inputOptions: Partial<Options>) {
         ...DEFAULT_OPTIONS,
         ...inputOptions,
     };
-    const themes = getThemesObject(options);
+    const {themes} = options;
+    if (Object.keys(themes).length === 0) {
+        throw new Error('you have to have at least one theme in your app.');
+    }
+
     const pluginThemes = buildPluginThemesArray(themes, options);
     const runtimeThemes = buildRuntimeThemes(Object.keys(themes), options);
-    const defaultThemeName = findDefaultTheme(themes, options);
 
-    return {themes: runtimeThemes, pluginThemes, defaultThemeName};
+    return {themes: runtimeThemes, pluginThemes, defaultThemeName: options.defaultTheme};
 }
 
 export default main;
 
-
-/**
- * Return an object that looks like:
- * {
- *     'demo-dark': './src/theme/themes/demo-dark.less',
- *     'demo-light': './src/theme/themes/demo-light.less',
- * }
- */
-function getThemesObject(options: Options): SourceThemes {
-    const themesDir = path.resolve(process.cwd(), options.themesDirectory);
-    const themesFileNames = getFilesInDirectory(themesDir);
-    const themes: SourceThemes = {};
-    themesFileNames.forEach(themeFileName => {
-        const themeName = path.parse(themeFileName).name;
-        themes[themeName] = path.resolve(themesDir, themeFileName);
-    });
-
-    return themes;
-}
 
 /**
  * Builds the theme array for WebpackCSSThemesPlugin.
@@ -74,37 +58,6 @@ function buildRuntimeThemes(themeNames: (keyof SourceThemes)[], options: Options
     }, {});
 }
 
-
-function findDefaultTheme(themes: SourceThemes, options: Options): keyof RuntimeThemes {
-    const fileContents = (fs.readFileSync(path.resolve(process.cwd(), options.palette))).toString();
-    const importRegex = new RegExp(/@import ['"]([^'"]+)['"];?/);
-    const matches = importRegex.exec(fileContents);
-    const importFound = matches === null ? null : matches[1];
-    const pathTo = path.resolve(path.dirname(options.palette), importFound);
-    let defaultThemeName = null;
-
-    Object.keys(themes).some(themeName => {
-        if (themes[themeName] === pathTo) {
-            defaultThemeName = themeName;
-            return true;
-        }
-    });
-
-    return defaultThemeName;
-}
-
-
 /**
  * Utilities
  */
-
-
-
-function getFilesInDirectory(dirPath) {
-    const items = fs.readdirSync(dirPath);
-    return items.filter(item => {
-        const itemPath = path.resolve(dirPath, item);
-        const stats = fs.statSync(itemPath);
-        return !stats.isDirectory();
-    });
-}
