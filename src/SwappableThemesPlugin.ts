@@ -21,11 +21,10 @@ type SwappableThemesPluginOptions = {
 }
 
 
-class SwappableThemesPlugin extends Plugin {
+class SwappableThemesPlugin {
     options: SwappableThemesPluginOptions;
 
     constructor(options: SwappableThemesPluginOptions) {
-        super();
         this.options = options;
     }
 
