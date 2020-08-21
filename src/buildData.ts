@@ -25,7 +25,7 @@ function main(inputOptions: Partial<Options>) {
     const pluginThemes = buildPluginThemesArray(themes, options);
     const runtimeThemes = buildRuntimeThemes(Object.keys(themes), options);
 
-    return {themes: runtimeThemes, pluginThemes, defaultThemeName: options.defaultTheme};
+    return {themes: runtimeThemes, pluginThemes};
 }
 
 export default main;

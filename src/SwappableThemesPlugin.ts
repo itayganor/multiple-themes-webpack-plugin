@@ -30,7 +30,8 @@ class SwappableThemesPlugin extends Plugin {
     }
 
     apply(compiler) {
-        const {themes, pluginThemes, defaultThemeName} = buildThemesData(this.options);
+        const {themes, pluginThemes} = buildThemesData(this.options);
+        const defaultThemeName = this.options.defaultTheme;
 
         const damn: Plugin = new WebpackCSSThemesPlugin({
             themes: pluginThemes,
