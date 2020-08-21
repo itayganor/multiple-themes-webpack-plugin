@@ -1,7 +1,4 @@
-import MyPlugin from './MyPlugin';
-import * as utils from './utils';
+import utils from './utils';
 
-export {
-    MyPlugin,
-    utils,
-}
+
+export default utils;

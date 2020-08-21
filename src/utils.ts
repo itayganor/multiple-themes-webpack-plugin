@@ -1,14 +1,17 @@
-
-
+import {THEMES} from './declarations';
 
 const THEME_KEY = 'theme';
 const PLUGIN_KEY = 'pkey';
-const PLUGIN_VALUE = 'themes-switch';
+const PLUGIN_VALUE = 'swappable-themes';
 
 
-export function changeTheme(theme, onLoad) {
-    // @ts-ignore
-    const themeUrl = THEMES[theme];
+export default function swapTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {
+    const themeUrl = (THEMES ?? {})[theme] ?? null;
+
+    if (themeUrl === null) {
+        console.error(`Could not switch to theme ${theme}. It was not found within the known themes.`, THEMES);
+        return;
+    }
 
     const head = document.getElementsByTagName('head')[0];
     const oldTheme = Array.from(head.getElementsByTagName('link'))
@@ -28,7 +31,8 @@ export function changeTheme(theme, onLoad) {
 
 export function getNewLinkTag(theme, themeUrl, stringLink?: false): HTMLLinkElement;
 export function getNewLinkTag(theme, themeUrl, stringLink: true): string;
-export function getNewLinkTag(theme, themeUrl, stringLink = false): string | HTMLLinkElement {    if (stringLink) {
+export function getNewLinkTag(theme, themeUrl, stringLink = false): string | HTMLLinkElement {
+    if (stringLink) {
         return `<link rel="stylesheet" href=${themeUrl} ${THEME_KEY}=${theme} ${PLUGIN_KEY}=${PLUGIN_VALUE}`;
     }
 
