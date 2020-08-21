@@ -1,8 +1,11 @@
-import {THEMES} from './declarations';
+import {RuntimeThemes} from './types';
 
 const THEME_KEY = 'theme';
 const PLUGIN_KEY = 'pkey';
 const PLUGIN_VALUE = 'swappable-themes';
+
+
+declare const THEMES: RuntimeThemes;
 
 
 export default function swapTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {

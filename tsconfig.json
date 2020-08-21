@@ -19,6 +19,6 @@
   ],
   "include": [
     "./src/**/*",
-    "./src/declarations.d.ts"
+    "./src/types/declarations.d.ts"
   ]
 }
