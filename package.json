@@ -23,7 +23,5 @@
     "webpack-dev-server": "^3.10.3"
   },
   "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ]
+  "files": ["dist/**/*"]
 }
