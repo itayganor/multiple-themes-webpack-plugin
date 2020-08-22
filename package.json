@@ -1,6 +1,6 @@
 {
   "name": "multiple-themes-webpack-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc"
@@ -32,5 +32,16 @@
   },
   "peerDependencies": {
     "webpack": "^4.4.0 || ^5.0.0"
+  },
+  "description": "Build multiple themes for your frontend project and switch between them on the fly",
+  "keywords": ["less", "theme", "webpack", "css-modules"],
+  "homepage": "https://github.com/itayganor/multiple-themes-webpack-plugin",
+  "author": {
+    "name": "itayganor",
+    "url": "https://itayganor.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itayganor/multiple-themes-webpack-plugin"
   }
 }
