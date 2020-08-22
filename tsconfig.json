@@ -11,7 +11,8 @@
     "noImplicitAny": false,
     "allowJs": true,
     "moduleResolution": "node",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "declaration": true
   },
   "exclude": [
     "node_modules",
