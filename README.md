@@ -98,5 +98,21 @@ To avoid this, tell the compiler to treat the file as a Less file using the [Imp
 
 *See [webpack-css-themes-plugin#4](https://github.com/gem-mine/webpack-css-themes-plugin/issues/4) for more information.*
 
+
+### Webpack config entry
+Due to a bug in the base plugin, the `entry` option in `webpack.config.js` must be an object.
+If it's not an object already in your config, the simplest solution is to wrap your current entry with a single-key object:
+```js
+{
+    // from:
+    entry: ['react-hot-loader/patch', './src/index.tsx'],
+
+    // to:
+    entry: {
+        app: ['react-hot-loader/patch', './src/index.tsx'],
+    },
+}
+```
+
 ### Exclude Assets Plugin
 Default generated CSS Assets are excluded from the `html` file, since this plugin appends its own styles automatically. If you ever wonder why you don't see your compiled themes without supplying a default theme, this is the reason.
