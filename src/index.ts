@@ -1,8 +1,6 @@
-import {swapTheme} from './utils';
-import MultipleThemesPlugin from './MultipleThemesPlugin';
+import {switchTheme} from './utils';
 
 
 export {
-    swapTheme,
-    MultipleThemesPlugin,
+    switchTheme,
 };

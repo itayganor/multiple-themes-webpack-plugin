@@ -2,13 +2,13 @@ import {RuntimeThemes} from './types';
 
 const THEME_KEY = 'theme';
 const PLUGIN_KEY = 'pkey';
-const PLUGIN_VALUE = 'swappable-themes';
+const PLUGIN_VALUE = 'multiple-themes-plugin';
 
 
 declare const THEMES: RuntimeThemes;
 
 
-export function swapTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {
+export function switchTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {
     const themeUrl = (THEMES ?? {})[theme] ?? null;
 
     if (themeUrl === null) {

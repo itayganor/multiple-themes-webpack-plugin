@@ -15,16 +15,16 @@ type HtmlWebpackPluginWithCustomFields = HtmlWebpackPlugin & {
     };
 };
 
-type SwappableThemesPluginOptions = {
+type MultipleThemesPluginOptions = {
     themes: SourceThemes;
     defaultTheme?: keyof SourceThemes | null;
 }
 
 
 class MultipleThemesPlugin {
-    options: SwappableThemesPluginOptions;
+    options: MultipleThemesPluginOptions;
 
-    constructor(options: SwappableThemesPluginOptions) {
+    constructor(options: MultipleThemesPluginOptions) {
         this.options = options;
     }
 
