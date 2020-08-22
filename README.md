@@ -1,5 +1,7 @@
 # multiple-themes-webpack-plugin
 
+[![npm version](https://img.shields.io/npm/v/multiple-themes-webpack-plugin)](https://www.npmjs.com/package/multiple-themes-webpack-plugin)
+
 A webpack plugin to generate multiple themes for your app.
 
 Wraps [webpack-css-themes-plugin](https://github.com/gem-mine/webpack-css-themes-plugin).
