@@ -1,4 +1,8 @@
-import utils from './utils';
+import {swapTheme} from './utils';
+import MultipleThemesPlugin from './MultipleThemesPlugin';
 
 
-export default utils;
+export {
+    swapTheme,
+    MultipleThemesPlugin,
+};

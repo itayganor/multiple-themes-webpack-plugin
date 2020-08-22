@@ -8,7 +8,7 @@ const PLUGIN_VALUE = 'swappable-themes';
 declare const THEMES: RuntimeThemes;
 
 
-export default function swapTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {
+export function swapTheme(theme: string, onLoad?: (link: HTMLLinkElement) => void) {
     const themeUrl = (THEMES ?? {})[theme] ?? null;
 
     if (themeUrl === null) {

@@ -21,7 +21,7 @@ type SwappableThemesPluginOptions = {
 }
 
 
-class SwappableThemesPlugin {
+class MultipleThemesPlugin {
     options: SwappableThemesPluginOptions;
 
     constructor(options: SwappableThemesPluginOptions) {
@@ -57,4 +57,4 @@ class SwappableThemesPlugin {
     }
 }
 
-export default SwappableThemesPlugin;
+export default MultipleThemesPlugin;
