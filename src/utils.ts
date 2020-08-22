@@ -36,7 +36,7 @@ export function getNewLinkTag(theme, themeUrl, stringLink?: false): HTMLLinkElem
 export function getNewLinkTag(theme, themeUrl, stringLink: true): string;
 export function getNewLinkTag(theme, themeUrl, stringLink = false): string | HTMLLinkElement {
     if (stringLink) {
-        return `<link rel="stylesheet" href=${themeUrl} ${THEME_KEY}=${theme} ${PLUGIN_KEY}=${PLUGIN_VALUE}`;
+        return `<link rel="stylesheet" href="${themeUrl}" ${THEME_KEY}="${theme}" ${PLUGIN_KEY}="${PLUGIN_VALUE}">`;
     }
 
     const link = document.createElement('link');
